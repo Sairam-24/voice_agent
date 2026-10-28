@@ -1,0 +1,22 @@
+started private server at http://127.0.0.1:57470 (pid 20528); waiting for it to be ready…
+server: stt={'engine': 'faster-whisper', 'model': 'base.en', 'device': 'cpu', 'compute_type': 'int8', 'cpu_threads': 0, 'beam_size': 1, 'vad_filter': True, 'language': 'en'}
+        llm={'provider': 'ollama', 'model': 'llama3.2:1b', 'max_output_tokens': 160, 'temperature': 0.6, 'num_thread': None, 'digest': 'baf6a787fdff', 'parameter_size': '1.2B', 'quantization': 'Q8_0'}
+        tts={'engine': 'piper', 'voice': 'en_US-ljspeech-medium', 'sample_rate': 22050}
+background CPU use before the benchmark (server idle): 42.2%
+warming up (2 requests per transport, not measured)…
+run 1/3 http c=1: ok 3/3  first audio median 11.46s  done median 11.46s  0.06 req/s
+run 2/3 http c=1: ok 3/3  first audio median 11.09s  done median 11.09s  0.06 req/s
+run 3/3 http c=1: ok 3/3  first audio median 10.87s  done median 10.87s  0.09 req/s
+background CPU use after the benchmark (server idle): 43.5%
+
+WARM results  (median of per-run medians, [min–max across runs])
+config        ok/total   err%           first audio             turn done  p95 done   req/s   WER%
+--------------------------------------------------------------------------------------------------
+http-c1        9/9       0.0%  11.09s [10.87–11.46]  11.09s [10.87–11.46]    27.85s    0.06    0.0
+
+Stage medians in ms (server-side, median across runs)
+config             stt_queue             stt        llm_ttft             llm       tts_queue tts_first_chunk             tts
+http-c1                    0            2281            1226            5386               0            1276            2937
+
+saved benchmarks\results\20261026-094951-verbose-http.json
+saved benchmarks\results\20261026-094951-verbose-http.csv

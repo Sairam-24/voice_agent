@@ -1,0 +1,28 @@
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+addopts = "-ra"
+markers = [
+    "integration: uses real models or a real external service; skipped automatically when they are not available",
+]
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+extend-exclude = [".venv", "models"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B", "UP", "ASYNC"]
+ignore = ["E501"]  # long lines in the benchmark tables and test data are intentional
+
+[tool.ruff.lint.flake8-bugbear]
+# FastAPI's idiom is `audio: UploadFile = File(...)`; these calls are not mutable defaults.
+extend-immutable-calls = ["fastapi.File", "fastapi.Form"]
+
+[tool.ruff.lint.per-file-ignores]
+# Scripts put the repo root on sys.path before importing app. Their `timeout` parameters are
+# applied with asyncio.timeout() inside, which is what ASYNC109 asks for.
+"scripts/*" = ["E402", "ASYNC109"]
+"tests/test_benchmark.py" = ["E402"]

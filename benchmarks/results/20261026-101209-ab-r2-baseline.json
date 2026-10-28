@@ -1,0 +1,499 @@
+{
+  "schema": 1,
+  "label": "ab-r2-baseline",
+  "started_at": "2026-10-26T10:12:09.590631+00:00",
+  "arguments": {
+    "url": "http://127.0.0.1:8000",
+    "transport": "ws",
+    "concurrency": [
+      1
+    ],
+    "requests": 6,
+    "runs": 1,
+    "warmup": 2,
+    "label": "ab-r2-baseline",
+    "output_dir": "benchmarks\\results",
+    "timeout": 180,
+    "realtime": false,
+    "spawn_server": true,
+    "env": [],
+    "cold": false,
+    "env_overrides": {}
+  },
+  "machine": {
+    "os": "Windows-10-10.0.19045-SP0",
+    "python": "3.13.14",
+    "arch": "AMD64",
+    "logical_cpus": 4,
+    "cpu": "Intel(R) Core(TM) i5-6300U CPU @ 2.40GHz",
+    "ram_gb": 15.9,
+    "gpu": "Intel(R) HD Graphics 520",
+    "physical_cores": 2
+  },
+  "background_cpu_percent": {
+    "before": 13.8,
+    "after": 7.1
+  },
+  "server": {
+    "app_version": "0.1.0",
+    "python": "3.13.14",
+    "platform": "Windows-10-10.0.19045-SP0",
+    "packages": {
+      "faster-whisper": "1.2.1",
+      "ctranslate2": "4.8.4",
+      "piper-tts": "1.8.0",
+      "onnxruntime": "1.31.0",
+      "av": "19.0.2",
+      "numpy": "2.5.4",
+      "fastapi": "0.162.0",
+      "uvicorn": "0.54.0",
+      "httpx": "0.28.1"
+    },
+    "components": {
+      "stt": {
+        "engine": "faster-whisper",
+        "model": "base.en",
+        "device": "cpu",
+        "compute_type": "int8",
+        "cpu_threads": 0,
+        "beam_size": 1,
+        "vad_filter": true,
+        "language": "en"
+      },
+      "llm": {
+        "provider": "ollama",
+        "model": "llama3.2:1b",
+        "max_output_tokens": 160,
+        "temperature": 0.6,
+        "num_thread": null,
+        "digest": "baf6a787fdff",
+        "parameter_size": "1.2B",
+        "quantization": "Q8_0"
+      },
+      "tts": {
+        "engine": "piper",
+        "voice": "en_US-ljspeech-medium",
+        "sample_rate": 22050
+      }
+    },
+    "settings": {
+      "warmup_on_start": true,
+      "stt_concurrency": 1,
+      "llm_concurrency": 1,
+      "tts_concurrency": 1,
+      "max_inflight_turns": 4,
+      "stt_timeout_s": 30.0,
+      "llm_first_token_timeout_s": 30.0,
+      "llm_timeout_s": 60.0,
+      "tts_timeout_s": 30.0,
+      "turn_timeout_s": 120.0,
+      "max_audio_seconds": 30.0,
+      "max_history_turns": 6,
+      "partial_transcripts": false,
+      "tts_first_clause_chars": 0,
+      "llm_system_prompt": "You are a voice assistant. Your reply is spoken aloud. Reply in at most two short sentences, under 40 words in total. Use plain spoken English with no lists, markdown, or emoji. Never give more than two sentences, even if the question is broad."
+    }
+  },
+  "inputs": {
+    "short.wav": {
+      "sha256": "41e821a007dd9d5416c54474898e03ecfe4555f4f68fa1215894e258680656cc",
+      "seconds": 1.86
+    },
+    "medium.wav": {
+      "sha256": "0913895a6305e8bd04d55b3e72371b00c3bc2609e5268410fccb52a2d7d229dd",
+      "seconds": 4.01
+    },
+    "long.wav": {
+      "sha256": "f753e6f3199660e78b8887e17f396e18f104f3453aacca7090201308114c6c83",
+      "seconds": 6.93
+    }
+  },
+  "server_was_spawned_by_benchmark": true,
+  "cold": null,
+  "summary": {
+    "ws-c1": {
+      "runs": 1,
+      "requests": 6,
+      "ok": 6,
+      "failed": 0,
+      "error_rate": 0.0,
+      "errors": {},
+      "first_audio_s_median_of_runs": {
+        "median": 5.585283549968153,
+        "min": 5.585283549968153,
+        "max": 5.585283549968153
+      },
+      "first_audio_s_p95_of_runs": {
+        "median": 7.734078750043409,
+        "min": 7.734078750043409,
+        "max": 7.734078750043409
+      },
+      "turn_done_s_median_of_runs": {
+        "median": 7.355314200045541,
+        "min": 7.355314200045541,
+        "max": 7.355314200045541
+      },
+      "turn_done_s_p95_of_runs": {
+        "median": 8.798439400008647,
+        "min": 8.798439400008647,
+        "max": 8.798439400008647
+      },
+      "throughput_rps": {
+        "median": 0.15500236737703255,
+        "min": 0.15500236737703255,
+        "max": 0.15500236737703255
+      },
+      "stt_wer_mean": 0.0,
+      "stage_medians_ms": {
+        "stt_queue_ms": 0.01,
+        "stt_ms": 1812.21,
+        "llm_queue_ms": 0.01,
+        "llm_ttft_ms": 438.69500000000005,
+        "llm_ms": 4420.54,
+        "tts_queue_ms": 0.015,
+        "tts_first_chunk_ms": 2131.2200000000003,
+        "tts_ms": 2969.36,
+        "first_audio_ms": 5583.254999999999,
+        "total_ms": 7350.785
+      }
+    }
+  },
+  "runs": [
+    {
+      "requests": 6,
+      "ok": 6,
+      "failed": 0,
+      "error_rate": 0.0,
+      "errors": {},
+      "wall_seconds": 38.70908619998954,
+      "throughput_rps": 0.15500236737703255,
+      "first_audio_s": {
+        "n": 6,
+        "median": 5.585283549968153,
+        "p95": 7.734078750043409,
+        "mean": 5.423340700004094,
+        "min": 2.5983020999701694,
+        "max": 8.120420000050217
+      },
+      "turn_done_s": {
+        "n": 6,
+        "median": 7.355314200045541,
+        "p95": 8.798439400008647,
+        "mean": 6.431236683352229,
+        "min": 2.607082200003788,
+        "max": 9.005643300013617
+      },
+      "stt_wer": {
+        "n": 6,
+        "median": 0.0,
+        "p95": 0.0,
+        "mean": 0.0,
+        "min": 0.0,
+        "max": 0.0
+      },
+      "stages_ms": {
+        "stt_queue_ms": {
+          "n": 6,
+          "median": 0.01,
+          "p95": 0.01,
+          "mean": 0.01,
+          "min": 0.01,
+          "max": 0.01
+        },
+        "stt_ms": {
+          "n": 6,
+          "median": 1812.21,
+          "p95": 2199.2000000000003,
+          "mean": 1838.9350000000002,
+          "min": 1533.05,
+          "max": 2252.3
+        },
+        "llm_queue_ms": {
+          "n": 6,
+          "median": 0.01,
+          "p95": 0.01,
+          "mean": 0.01,
+          "min": 0.01,
+          "max": 0.01
+        },
+        "llm_ttft_ms": {
+          "n": 6,
+          "median": 438.69500000000005,
+          "p95": 601.5275,
+          "mean": 387.0416666666667,
+          "min": 105.96,
+          "max": 635.63
+        },
+        "llm_ms": {
+          "n": 6,
+          "median": 4420.54,
+          "p95": 5344.5575,
+          "mean": 3555.99,
+          "min": 812.92,
+          "max": 5444.83
+        },
+        "tts_queue_ms": {
+          "n": 6,
+          "median": 0.015,
+          "p95": 0.0275,
+          "mean": 0.016666666666666666,
+          "min": 0.01,
+          "max": 0.03
+        },
+        "tts_first_chunk_ms": {
+          "n": 6,
+          "median": 2131.2200000000003,
+          "p95": 3117.23,
+          "mean": 1808.885,
+          "min": 250.29,
+          "max": 3377.11
+        },
+        "tts_ms": {
+          "n": 6,
+          "median": 2969.36,
+          "p95": 4171.84,
+          "mean": 2518.82,
+          "min": 250.54,
+          "max": 4194.98
+        },
+        "first_audio_ms": {
+          "n": 6,
+          "median": 5583.254999999999,
+          "p95": 7732.4075,
+          "mean": 5421.441666666667,
+          "min": 2597.07,
+          "max": 8118.71
+        },
+        "total_ms": {
+          "n": 6,
+          "median": 7350.785,
+          "p95": 8793.6675,
+          "mean": 6426.901666666668,
+          "min": 2605.08,
+          "max": 9001.36
+        }
+      },
+      "transport": "ws",
+      "concurrency": 1,
+      "run": 1,
+      "traces": [
+        {
+          "input": "short.wav",
+          "ok": true,
+          "error_code": null,
+          "error_message": null,
+          "transcript": "What is the capital of France?",
+          "reply": "The capital of France is Paris.",
+          "wer": 0.0,
+          "t_transcript": 2.25514290004503,
+          "t_first_text": 2.8911937000229955,
+          "t_first_audio": 4.07570000004489,
+          "t_done": 4.0872385000111535,
+          "audio_seconds": 2.10140589569161,
+          "server_metrics": {
+            "request_id": "6c10c05072aa-1",
+            "transport": "ws",
+            "status": "ok",
+            "error_code": null,
+            "audio_seconds": 1.86,
+            "upload_ms": null,
+            "decode_ms": null,
+            "stt_queue_ms": 0.01,
+            "stt_ms": 2252.3,
+            "llm_queue_ms": 0.01,
+            "llm_ttft_ms": 635.63,
+            "llm_ms": 1193.37,
+            "tts_queue_ms": 0.01,
+            "tts_first_chunk_ms": 625.88,
+            "tts_ms": 626.26,
+            "first_audio_ms": 4072.86,
+            "total_ms": 4082.81,
+            "llm_output_chars": 31,
+            "llm_output_tokens": 8,
+            "tts_audio_seconds": 2.1
+          }
+        },
+        {
+          "input": "medium.wav",
+          "ok": true,
+          "error_code": null,
+          "error_message": null,
+          "transcript": "Can you explain in a couple of sentences how a rainbow forms?",
+          "reply": "A rainbow forms when sunlight passes through water droplets in the air at a specific angle, causing the light to be refracted and separated into its different colors. The colors always appear in the same order: red, orange, yellow, green, blue, indigo, and violet.",
+          "wer": 0.0,
+          "t_transcript": 2.041272700065747,
+          "t_first_text": 2.541375800035894,
+          "t_first_audio": 8.120420000050217,
+          "t_done": 9.005643300013617,
+          "audio_seconds": 17.426575963718822,
+          "server_metrics": {
+            "request_id": "247e5f68ce93-1",
+            "transport": "ws",
+            "status": "ok",
+            "error_code": null,
+            "audio_seconds": 4.01,
+            "upload_ms": null,
+            "decode_ms": null,
+            "stt_queue_ms": 0.01,
+            "stt_ms": 2039.9,
+            "llm_queue_ms": 0.01,
+            "llm_ttft_ms": 499.22,
+            "llm_ms": 4710.32,
+            "tts_queue_ms": 0.02,
+            "tts_first_chunk_ms": 3377.11,
+            "tts_ms": 4194.98,
+            "first_audio_ms": 8118.71,
+            "total_ms": 9001.36,
+            "llm_output_chars": 264,
+            "llm_output_tokens": 58,
+            "tts_audio_seconds": 17.43
+          }
+        },
+        {
+          "input": "long.wav",
+          "ok": true,
+          "error_code": null,
+          "error_message": null,
+          "transcript": "I am planning a three day trip to Rome next month. What are the most important things I should see? And what should I avoid?",
+          "reply": "You should visit the Colosseum, the Vatican City, including the Sistine Chapel, and the Pantheon for a glimpse into Rome's ancient history. Be prepared for crowds and lines, and also for pickpocketing and petty theft in tourist areas.",
+          "wer": 0.0,
+          "t_transcript": 1.965719300089404,
+          "t_first_text": 2.170677400077693,
+          "t_first_audio": 6.575055000022985,
+          "t_done": 7.1619954000925645,
+          "audio_seconds": 13.722993197278912,
+          "server_metrics": {
+            "request_id": "521f3904f62d-1",
+            "transport": "ws",
+            "status": "ok",
+            "error_code": null,
+            "audio_seconds": 6.93,
+            "upload_ms": null,
+            "decode_ms": null,
+            "stt_queue_ms": 0.01,
+            "stt_ms": 1964.41,
+            "llm_queue_ms": 0.01,
+            "llm_ttft_ms": 204.05,
+            "llm_ms": 4130.76,
+            "tts_queue_ms": 0.03,
+            "tts_first_chunk_ms": 2180.09,
+            "tts_ms": 2716.36,
+            "first_audio_ms": 6573.5,
+            "total_ms": 7158.32,
+            "llm_output_chars": 234,
+            "llm_output_tokens": 54,
+            "tts_audio_seconds": 13.72
+          }
+        },
+        {
+          "input": "short.wav",
+          "ok": true,
+          "error_code": null,
+          "error_message": null,
+          "transcript": "What is the capital of France?",
+          "reply": "The capital of France is Paris.",
+          "wer": 0.0,
+          "t_transcript": 1.5342171000083908,
+          "t_first_text": 1.9331484999274835,
+          "t_first_audio": 2.5983020999701694,
+          "t_done": 2.607082200003788,
+          "audio_seconds": 2.078185941043084,
+          "server_metrics": {
+            "request_id": "117b10f39c00-1",
+            "transport": "ws",
+            "status": "ok",
+            "error_code": null,
+            "audio_seconds": 1.86,
+            "upload_ms": null,
+            "decode_ms": null,
+            "stt_queue_ms": 0.01,
+            "stt_ms": 1533.05,
+            "llm_queue_ms": 0.01,
+            "llm_ttft_ms": 398.54,
+            "llm_ms": 812.92,
+            "tts_queue_ms": 0.01,
+            "tts_first_chunk_ms": 250.29,
+            "tts_ms": 250.54,
+            "first_audio_ms": 2597.07,
+            "total_ms": 2605.08,
+            "llm_output_chars": 31,
+            "llm_output_tokens": 8,
+            "tts_audio_seconds": 2.08
+          }
+        },
+        {
+          "input": "medium.wav",
+          "ok": true,
+          "error_code": null,
+          "error_message": null,
+          "transcript": "Can you explain in a couple of sentences how a rainbow forms?",
+          "reply": "A rainbow forms when sunlight passes through water droplets in the air, causing the light to be refracted and separated into its individual colors. The colors always appear in the same order, usually red, orange, yellow, green, blue, indigo, and violet, due to the varying wavelengths of the light.",
+          "wer": 0.0,
+          "t_transcript": 1.5851685999659821,
+          "t_first_text": 2.064476699917577,
+          "t_first_audio": 6.130180099979043,
+          "t_done": 7.548632999998517,
+          "audio_seconds": 19.620861678004534,
+          "server_metrics": {
+            "request_id": "8865cbf71bdc-1",
+            "transport": "ws",
+            "status": "ok",
+            "error_code": null,
+            "audio_seconds": 4.01,
+            "upload_ms": null,
+            "decode_ms": null,
+            "stt_queue_ms": 0.01,
+            "stt_ms": 1583.94,
+            "llm_queue_ms": 0.01,
+            "llm_ttft_ms": 478.85,
+            "llm_ms": 5043.74,
+            "tts_queue_ms": 0.01,
+            "tts_first_chunk_ms": 2337.59,
+            "tts_ms": 3222.36,
+            "first_audio_ms": 6127.94,
+            "total_ms": 7543.25,
+            "llm_output_chars": 298,
+            "llm_output_tokens": 64,
+            "tts_audio_seconds": 19.62
+          }
+        },
+        {
+          "input": "long.wav",
+          "ok": true,
+          "error_code": null,
+          "error_message": null,
+          "transcript": "I am planning a three day trip to Rome next month. What are the most important things I should see? And what should I avoid?",
+          "reply": "You should visit the Colosseum, the Vatican City, and the Pantheon in Rome. These are the top attractions that showcase the city's rich history and art.\n\nAs for what to avoid, it's best to steer clear of pickpocketing in crowded areas and tourist hotspots, and to be mindful of your belongings in public transportation.",
+          "wer": 0.0,
+          "t_transcript": 1.6612651000032201,
+          "t_first_text": 1.7676127000013366,
+          "t_first_audio": 5.0403869999572635,
+          "t_done": 8.176827699993737,
+          "audio_seconds": 18.552743764172334,
+          "server_metrics": {
+            "request_id": "51b6c2244627-1",
+            "transport": "ws",
+            "status": "ok",
+            "error_code": null,
+            "audio_seconds": 6.93,
+            "upload_ms": null,
+            "decode_ms": null,
+            "stt_queue_ms": 0.01,
+            "stt_ms": 1660.01,
+            "llm_queue_ms": 0.01,
+            "llm_ttft_ms": 105.96,
+            "llm_ms": 5444.83,
+            "tts_queue_ms": 0.02,
+            "tts_first_chunk_ms": 2082.35,
+            "tts_ms": 4102.42,
+            "first_audio_ms": 5038.57,
+            "total_ms": 8170.59,
+            "llm_output_chars": 318,
+            "llm_output_tokens": 72,
+            "tts_audio_seconds": 18.55
+          }
+        }
+      ]
+    }
+  ]
+}

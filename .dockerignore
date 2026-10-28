@@ -1,0 +1,12 @@
+.venv/
+.git/
+.env
+models/
+benchmarks/
+tests/
+docs/
+tmp/
+**/__pycache__/
+.pytest_cache/
+web/test/
+*.log

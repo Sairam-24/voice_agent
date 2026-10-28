@@ -1,0 +1,21 @@
+
+started private server at http://127.0.0.1:57885 (pid 2484); waiting for it to be ready…
+server: stt={'engine': 'faster-whisper', 'model': 'base.en', 'device': 'cpu', 'compute_type': 'int8', 'cpu_threads': 0, 'beam_size': 1, 'vad_filter': True, 'language': 'en'}
+        llm={'provider': 'ollama', 'model': 'llama3.2:1b', 'max_output_tokens': 160, 'temperature': 0.6, 'num_thread': None, 'digest': 'baf6a787fdff', 'parameter_size': '1.2B', 'quantization': 'Q8_0'}
+        tts={'engine': 'piper', 'voice': 'en_US-ljspeech-medium', 'sample_rate': 22050}
+background CPU use before the benchmark (server idle): 42.9%
+warming up (2 requests per transport, not measured)…
+run 1/1 ws   c=1: ok 6/6  first audio median 6.38s  done median 6.96s  0.14 req/s
+background CPU use after the benchmark (server idle): 9.5%
+
+WARM results  (median of per-run medians, [min–max across runs])
+config        ok/total   err%           first audio             turn done  p95 done   req/s   WER%
+--------------------------------------------------------------------------------------------------
+ws-c1          6/6       0.0%     6.38s [6.38–6.38]     6.96s [6.96–6.96]     9.90s    0.14    0.0
+
+Stage medians in ms (server-side, median across runs)
+config             stt_queue             stt        llm_ttft             llm       tts_queue tts_first_chunk             tts
+ws-c1                      0            2297             827            3419               0            1794            2482
+
+saved benchmarks\results\20261026-095828-ab-r1-clause40.json
+saved benchmarks\results\20261026-095828-ab-r1-clause40.csv

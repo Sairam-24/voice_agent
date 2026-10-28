@@ -1,0 +1,13 @@
+Reply length (words, after markdown cleanup) of ollama llama3.2:1b, 5 samples per cell,
+max 160 output tokens, temperature 0.6. Produced with scripts/compare_prompts.py on the
+development machine (Intel i5-6300U, 2 cores) on 2026-10-26. Prompt A is the original default;
+prompt B is the strict one now used as the default.
+
+=== prompt A current ===
+  What is the capital of France?               words per reply: [6, 6, 6, 6, 6]  median 6
+  Can you explain in a couple of sentences h   words per reply: [45, 53, 63, 65, 72]  median 63
+  I am planning a three day trip to Rome nex   words per reply: [82, 85, 120, 121, 123]  median 120
+=== prompt B strict ===
+  What is the capital of France?               words per reply: [6, 6, 6, 6, 6]  median 6
+  Can you explain in a couple of sentences h   words per reply: [34, 43, 44, 44, 57]  median 44
+  I am planning a three day trip to Rome nex   words per reply: [28, 29, 37, 47, 48]  median 37

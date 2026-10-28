@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Voice Agent</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <h1>Voice Agent</h1>
+    <div class="pills" role="group" aria-label="System status">
+      <span class="pill" id="conn-pill" data-state="warn"><span class="dot" aria-hidden="true"></span><span id="conn-text">Connecting…</span></span>
+      <span class="pill" id="models-pill" data-state="warn" title=""><span class="dot" aria-hidden="true"></span><span id="models-text">Checking models…</span></span>
+    </div>
+  </header>
+
+  <div id="banner" role="alert" hidden>
+    <span id="banner-text"></span>
+    <button class="btn" id="banner-dismiss" type="button">Dismiss</button>
+  </div>
+
+  <main class="layout">
+    <section class="panel conversation" aria-labelledby="conversation-heading">
+      <h2 id="conversation-heading" class="sr-only">Conversation</h2>
+      <ol id="messages">
+        <li class="empty">Press the microphone, ask something, then press it again to send.</li>
+      </ol>
+      <!-- Streaming text is not announced token by token; finished messages go through this region. -->
+      <p id="announcer" class="sr-only" aria-live="polite"></p>
+      <p id="live-transcript"></p>
+
+      <div class="controls">
+        <button id="mic" type="button" aria-pressed="false" aria-label="Start recording" data-phase="idle" disabled>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 14a3 3 0 0 0 3-3V5a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3Zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.92V21h2v-3.08A7 7 0 0 0 19 11h-2Z"/></svg>
+        </button>
+        <div class="status">
+          <p id="state-text">Starting…</p>
+          <p id="state-detail" aria-live="polite"></p>
+          <div class="meter" id="meter" hidden aria-hidden="true"><div id="meter-bar"></div></div>
+        </div>
+        <button class="btn" id="cancel" type="button" hidden>Cancel</button>
+      </div>
+
+      <details class="settings">
+        <summary>Settings</summary>
+        <div class="setting-row">
+          <label for="transport">Transport</label>
+          <select id="transport">
+            <option value="stream">Streaming (WebSocket)</option>
+            <option value="upload">Upload (one HTTP request)</option>
+          </select>
+          <button class="btn" id="reset" type="button">New conversation</button>
+        </div>
+        <p id="transport-help" class="hint"></p>
+      </details>
+    </section>
+
+    <aside class="panel diagnostics" aria-labelledby="diag-heading">
+      <h2 id="diag-heading">Diagnostics</h2>
+      <p class="hint">Measured by the server for real requests. “Last turn” is your latest request; “Median” covers recent turns the server handled. A dash means that stage did not run.</p>
+      <table>
+        <thead><tr><th scope="col">Stage</th><th scope="col">Last turn</th><th scope="col">Median</th></tr></thead>
+        <tbody id="diag-body"></tbody>
+      </table>
+      <p id="client-latency"></p>
+      <p id="turn-counts"></p>
+    </aside>
+  </main>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

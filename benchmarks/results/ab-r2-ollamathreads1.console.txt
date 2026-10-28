@@ -1,0 +1,21 @@
+
+started private server at http://127.0.0.1:58514 (pid 8060); waiting for it to be ready…
+server: stt={'engine': 'faster-whisper', 'model': 'base.en', 'device': 'cpu', 'compute_type': 'int8', 'cpu_threads': 0, 'beam_size': 1, 'vad_filter': True, 'language': 'en'}
+        llm={'provider': 'ollama', 'model': 'llama3.2:1b', 'max_output_tokens': 160, 'temperature': 0.6, 'num_thread': 1, 'digest': 'baf6a787fdff', 'parameter_size': '1.2B', 'quantization': 'Q8_0'}
+        tts={'engine': 'piper', 'voice': 'en_US-ljspeech-medium', 'sample_rate': 22050}
+background CPU use before the benchmark (server idle): 27.4%
+warming up (2 requests per transport, not measured)…
+run 1/1 ws   c=1: ok 6/6  first audio median 5.78s  done median 8.87s  0.13 req/s
+background CPU use after the benchmark (server idle): 6.9%
+
+WARM results  (median of per-run medians, [min–max across runs])
+config        ok/total   err%           first audio             turn done  p95 done   req/s   WER%
+--------------------------------------------------------------------------------------------------
+ws-c1          6/6       0.0%     5.78s [5.78–5.78]     8.87s [8.87–8.87]    10.27s    0.13    0.0
+
+Stage medians in ms (server-side, median across runs)
+config             stt_queue             stt        llm_ttft             llm       tts_queue tts_first_chunk             tts
+ws-c1                      0            1575             800            6594               0             678            1304
+
+saved benchmarks\results\20261026-100805-ab-r2-ollamathreads1.json
+saved benchmarks\results\20261026-100805-ab-r2-ollamathreads1.csv

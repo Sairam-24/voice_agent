@@ -1,0 +1,30 @@
+{
+  "name": "voice-agent-hud",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "React HUD client for the Voice Agent server",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc --noEmit && vite build",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test \"src/**/*.test.ts\"",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@fontsource/orbitron": "5.3.0",
+    "@fontsource/rajdhani": "5.3.0",
+    "@fontsource/share-tech-mono": "5.3.0",
+    "motion": "14.1.0",
+    "react": "19.3.0",
+    "react-dom": "19.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "24.19.2",
+    "@types/react": "19.3.0",
+    "@types/react-dom": "19.3.0",
+    "@vitejs/plugin-react": "6.1.2",
+    "typescript": "7.0.2",
+    "vite": "8.3.4"
+  }
+}

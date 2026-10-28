@@ -1,0 +1,22 @@
+started private server at http://127.0.0.1:55824 (pid 8720); waiting for it to be ready…
+server: stt={'engine': 'faster-whisper', 'model': 'base.en', 'device': 'cpu', 'compute_type': 'int8', 'cpu_threads': 0, 'beam_size': 1, 'vad_filter': True, 'language': 'en'}
+        llm={'provider': 'ollama', 'model': 'llama3.2:1b', 'max_output_tokens': 160, 'temperature': 0.6, 'digest': 'baf6a787fdff', 'parameter_size': '1.2B', 'quantization': 'Q8_0'}
+        tts={'engine': 'piper', 'voice': 'en_US-ljspeech-medium', 'sample_rate': 22050}
+background CPU use before the benchmark (server idle): 25.6%
+warming up (2 requests per transport, not measured)…
+run 1/3 ws   c=1: ok 6/6  first audio median 6.16s  done median 6.96s  0.09 req/s
+run 2/3 ws   c=1: ok 6/6  first audio median 5.70s  done median 6.21s  0.08 req/s
+run 3/3 ws   c=1: ok 6/6  first audio median 6.81s  done median 8.68s  0.07 req/s
+background CPU use after the benchmark (server idle): 29.1%
+
+WARM results  (median of per-run medians, [min–max across runs])
+config        ok/total   err%           first audio             turn done  p95 done   req/s   WER%
+--------------------------------------------------------------------------------------------------
+ws-c1         18/18      0.0%     6.16s [5.70–6.81]     6.96s [6.21–8.68]    11.50s    0.08    0.0
+
+Stage medians in ms (server-side, median across runs)
+config             stt_queue             stt        llm_ttft             llm       tts_queue tts_first_chunk             tts
+ws-c1                      0            2045             753            4342               0            1540            2332
+
+saved benchmarks\results\20261026-092722-realtime-partials.json
+saved benchmarks\results\20261026-092722-realtime-partials.csv

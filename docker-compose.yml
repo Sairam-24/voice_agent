@@ -1,0 +1,38 @@
+# docker compose up --build                       app only; talks to Ollama running on the host
+# docker compose --profile ollama up --build      app + a containerised Ollama (see docs/deployment.md)
+#
+# NOTE: this file and the Dockerfile were written but have not been built or run by the author.
+
+services:
+  app:
+    build: .
+    image: voice-agent:local
+    ports:
+      # Loopback only. The app has no authentication, so do not publish it on 0.0.0.0.
+      - "127.0.0.1:8000:8000"
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      # A separate variable name on purpose: .env usually says OLLAMA_BASE_URL=http://localhost:11434,
+      # which would point at the container itself. Set DOCKER_OLLAMA_URL to override.
+      OLLAMA_BASE_URL: ${DOCKER_OLLAMA_URL:-http://host.docker.internal:11434}
+    extra_hosts:
+      - "host.docker.internal:host-gateway" # needed on Linux; Docker Desktop defines it already
+    volumes:
+      - voice-models:/app/models
+    restart: unless-stopped
+    stop_grace_period: 20s
+
+  ollama:
+    profiles: ["ollama"]
+    image: ollama/ollama:0.40.11 # pinned to the version the project was developed with
+    volumes:
+      - ollama-data:/root/.ollama
+    restart: unless-stopped
+    # After starting:  docker compose exec ollama ollama pull llama3.2:1b
+    # and run the app with DOCKER_OLLAMA_URL=http://ollama:11434
+
+volumes:
+  voice-models:
+  ollama-data:

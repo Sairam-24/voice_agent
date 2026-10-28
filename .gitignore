@@ -1,0 +1,24 @@
+# secrets
+.env
+
+# python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+*.egg-info/
+
+# downloaded model files (large; fetched by scripts/download_models.py)
+models/
+
+# scratch output
+tmp/
+*.log
+
+# generated benchmark inputs and results are produced locally
+benchmarks/inputs/
+
+# frontend
+node_modules/
+frontend/dist/
+*.tsbuildinfo
